@@ -1,28 +1,31 @@
+import { useState } from "react";
+import Header from "./components/Header";
+import FeedbackList from "./components/FeedbackList";
+import FeedbackData from "./data/FeedbackData";
+import FeedbackStats from "./components/FeedbackStats";
+
+
 function App() {
-const title = 'Blog Post';
-const posts = [
-    {
-        id: 1,
-        body: 'This is post one'
-    },
-    {
-        id: 2,
-        body: 'This is post two'
+//define state
+    const [feedback, setFeedback] = useState(FeedbackData);
+
+    
+//define functions
+    const deleteFeedback = (id) => {
+        if(window.confirm("Are you sure you want to delete this feedback?")) {
+            setFeedback(feedback.filter(feedback => feedback.id !== id));
+        }        
+        //console.log('App',id);
     }
-];
 
  return (
+     <>
+    <Header />
     <div className="container">
-       <h1>{title}</h1>
-       <div className="comments">
-           <h3>comment ({posts.length})</h3>
-              <ul>
-                    {posts.map(post => (
-                        <li key={post.id}>{post.body}</li>
-                    ))}
-                </ul>
-        </div>
+    <FeedbackStats feedback={feedback} />
+       <FeedbackList feedback={feedback} handleDelete={deleteFeedback}/>
     </div>
+    </>
     )
 }
 
