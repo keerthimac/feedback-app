@@ -22,6 +22,7 @@ function FeedbackForm({ handleAdd }) {
             setMessage(null)
         } else if (event.target.value.length <= 10) {
             setMessage("Please enter at least 10 characters")
+            setButtonDisabled(true);
         } else if (event.target.value.length > 10) {
             setButtonDisabled(false);
             setMessage(null)
@@ -44,6 +45,7 @@ function FeedbackForm({ handleAdd }) {
             }
             handleAdd(newFeedback);
             setText("");
+            setButtonDisabled(true)
         }
     };
 
