@@ -10,6 +10,7 @@ function FeedbackForm() {
     const [message, setMessage] = useState('');
 
     
+    //validation for button and characters and state
     const handleTextChange = (event) => {
         //if text state empty set button disabled to true
         if (event.target.value.length === 0) {
