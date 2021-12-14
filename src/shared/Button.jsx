@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 
-function Button({ children, type }) {
+function Button({ children,version, type,isDisabled }) {
     return (
-        <button className={`btn btn-${type && type}`}>
+        <button type={type} disabled={isDisabled} className={`btn btn-${version}`}>
             {children}
         </button>
     )
@@ -10,13 +10,17 @@ function Button({ children, type }) {
 
 //define default props for card
 Button.defaultProps = {
-    type: "primary"
+    version: "primary",
+    type: "button",
+    isDisabled: false  
 }
 
 
 Button.propTypes = {
     children: PropTypes.node.isRequired,
-    type: PropTypes.bool,
+    type: PropTypes.string,
+    version: PropTypes.string,
+    isDisabled: PropTypes.bool
 }
 
 export default Button
