@@ -4,12 +4,21 @@ import FeedbackList from "./components/FeedbackList";
 import FeedbackData from "./data/FeedbackData";
 import FeedbackStats from "./components/FeedbackStats";
 import FeedbackForm from "./components/FeedbackForm";
+import { v4 as uuidv4 } from 'uuid';
 
 
 
 function App() {
     //define state for main app
     const [feedback, setFeedback] = useState(FeedbackData);
+
+    //define add item function via props drilling with uuid
+    const addNewFeedback = (newFeedback) => {
+        newFeedback.id = uuidv4();
+        setFeedback([newFeedback, ...feedback]);
+
+        console.log('from app', newFeedback);
+    }
 
 
     //define delete item functions in feedback item component via props drilling
@@ -24,7 +33,7 @@ function App() {
         <>
             <Header />
             <div className="container">
-                <FeedbackForm />
+                <FeedbackForm handleAdd={addNewFeedback} />
                 <FeedbackStats feedback={feedback} />
                 <FeedbackList feedback={feedback} handleDelete={deleteFeedback} />
             </div>
