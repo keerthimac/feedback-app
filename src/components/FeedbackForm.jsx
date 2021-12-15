@@ -2,8 +2,10 @@ import { useState } from "react";
 import Card from "../shared/Card";
 import Button from "../shared/Button";
 import RatingSelect from "./RatingSelect";
+import { useContext } from "react";
+import FeedbackContext from "../context/FeedbackContext";
 
-function FeedbackForm({ handleAdd }) {
+function FeedbackForm() {
   const [text, setText] = useState("");
   //button disabled if text is empty
   const [buttonDisabled, setButtonDisabled] = useState(true);
@@ -11,6 +13,8 @@ function FeedbackForm({ handleAdd }) {
   const [message, setMessage] = useState("");
   //state for rating
   const [rating, setRating] = useState(1);
+
+  const { addNewFeedback } = useContext(FeedbackContext);
 
   //validation for button and characters and state
   const handleTextChange = (event) => {
@@ -41,7 +45,7 @@ function FeedbackForm({ handleAdd }) {
         text,
         rating,
       };
-      handleAdd(newFeedback);
+      addNewFeedback(newFeedback);
       setText("");
       setButtonDisabled(true);
     }
