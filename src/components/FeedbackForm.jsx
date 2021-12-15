@@ -4,6 +4,7 @@ import Button from "../shared/Button";
 import RatingSelect from "./RatingSelect";
 import { useContext } from "react";
 import FeedbackContext from "../context/FeedbackContext";
+import { useEffect } from "react";
 
 function FeedbackForm() {
   const [text, setText] = useState("");
@@ -14,7 +15,16 @@ function FeedbackForm() {
   //state for rating
   const [rating, setRating] = useState(1);
 
-  const { addNewFeedback } = useContext(FeedbackContext);
+  const { addNewFeedback, feedbackEdit, updateFeedback } =
+    useContext(FeedbackContext);
+
+  useEffect(() => {
+    if (feedbackEdit.edit) {
+      setButtonDisabled(false);
+      setText(feedbackEdit.item.text);
+      setRating(feedbackEdit.item.rating);
+    }
+  }, [feedbackEdit]);
 
   //validation for button and characters and state
   const handleTextChange = (event) => {
@@ -45,7 +55,13 @@ function FeedbackForm() {
         text,
         rating,
       };
-      addNewFeedback(newFeedback);
+
+      if (feedbackEdit.edit) {
+        updateFeedback(feedbackEdit.item.id, newFeedback);
+      } else {
+        addNewFeedback(newFeedback); //add new feedback
+      }
+
       setText("");
       setButtonDisabled(true);
     }

@@ -9,9 +9,24 @@ export const FeedbackProvider = ({ children }) => {
     {
       id: 1,
       rating: 5,
-      text: "This is coming from the provider",
+      text: "This is test 01",
+    },
+    {
+      id: 2,
+      rating: 6,
+      text: "This is test 02",
+    },
+    {
+      id: 3,
+      rating: 7,
+      text: "This is test 03",
     },
   ]);
+
+  const [feedbackEdit, setFeedbackEdit] = useState({
+    item: {},
+    edit: false,
+  });
 
   //define add item function
   const addNewFeedback = (newFeedback) => {
@@ -29,9 +44,37 @@ export const FeedbackProvider = ({ children }) => {
     //console.log('App',id);
   };
 
+  //set item to be updated
+  const editFeedback = (item) => {
+    setFeedbackEdit({
+      item,
+      edit: true,
+    });
+  };
+
+  //update item
+  const updateFeedback = (id, updatedFeedback) => {
+    setFeedback(
+      feedback.map((item) =>
+        item.id === id ? { ...item, ...updatedFeedback } : item
+      )
+    );
+    setFeedbackEdit({
+      item: {},
+      edit: false,
+    });
+  };
+
   return (
     <FeedbackContext.Provider
-      value={{ feedback, addNewFeedback, deleteFeedback }}>
+      value={{
+        feedback,
+        feedbackEdit,
+        addNewFeedback,
+        deleteFeedback,
+        editFeedback,
+        updateFeedback,
+      }}>
       {children}
     </FeedbackContext.Provider>
   );
