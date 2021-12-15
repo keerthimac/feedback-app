@@ -186,7 +186,8 @@ input:focus {
 }
 
 .about-link {
-  position: absolute;
+  /* need to position bottom right of body */
+  position: fixed;
   bottom: 20px;
   right: 20px;
   color: #fff;
