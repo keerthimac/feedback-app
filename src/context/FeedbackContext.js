@@ -61,6 +61,7 @@ export const FeedbackProvider = ({ children }) => {
     setFeedbackEdit({
       item,
       edit: true,
+      color: "true",
     });
   };
 
@@ -82,6 +83,7 @@ export const FeedbackProvider = ({ children }) => {
     setFeedbackEdit({
       item: {},
       edit: false,
+      color: "false",
     });
   };
 

@@ -1,19 +1,14 @@
 {
   "feedback": [
     {
-      "id": 1,
-      "rating": 10,
-      "text": "This is coming from json-server test 01"
+      "text": "hello world",
+      "rating": 1,
+      "id": 1
     },
     {
-      "id": 2,
-      "rating": 9,
-      "text": "This is coming from json-server test 02"
-    },
-    {
-      "text": "This is coming from json-server from edit rating 02",
-      "rating": 10,
-      "id": 3
+      "text": "hello world 02",
+      "rating": 1,
+      "id": 2
     }
   ]
 }
